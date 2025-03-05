@@ -23,6 +23,20 @@ namespace cyclone
 
         ~Vector3();
 
+        // multiply this vector by given value
+        void operator*=(const real value)
+        {
+            x *= value;
+            y *= value;
+            z *= value;
+        }
+
+        // return a copy of this vector scaled by given value
+        Vector3 operator*(const real value) const
+        {
+            return Vector3(x * value, y * value, z * value);
+        }
+
         void invert()
         {
             x = -x;
