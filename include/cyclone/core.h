@@ -23,7 +23,6 @@ namespace cyclone
 
         ~Vector3();
 
-        // multiply this vector by given value
         void operator*=(const real value)
         {
             x *= value;
@@ -31,10 +30,70 @@ namespace cyclone
             z *= value;
         }
 
-        // return a copy of this vector scaled by given value
         Vector3 operator*(const real value) const
         {
             return Vector3(x * value, y * value, z * value);
+        }
+
+        void operator+=(const Vector3 &v)
+        {
+            x += v.x;
+            y += v.y;
+            z += v.z;
+        }
+
+        Vector3 operator+(const Vector3 &v) const
+        {
+            return Vector3(x + v.x, y + v.y, z + v.z);
+        }
+
+        void operator-=(const Vector3 &v)
+        {
+            x -= v.x;
+            y -= v.y;
+            z -= v.z;
+        }
+
+        Vector3 operator-(const Vector3 &v) const
+        {
+            return Vector3(x - v.x, y - v.y, z - v.z);
+        }
+
+        void addScaledVector(const Vector3 &v, real scale)
+        {
+            x += v.x * scale;
+            y += v.y * scale;
+            z += v.z * scale;
+        }
+
+        void componentProductUpdate(const Vector3 &v)
+        {
+            x *= v.x;
+            y *= v.y;
+            z *= v.z;
+        }
+
+        real scalarProduct(const Vector3 &v) const
+        {
+            return x * v.x + y * v.y + z * v.z;
+        }
+
+        real operator*(const Vector3 &v) const
+        {
+            return scalarProduct(v);
+        }
+
+        Vector3 componentProduct(const Vector3 &v) const
+        {
+            return Vector3(x * v.x, y * v.y, z * v.z);
+        }
+
+        Vector3 vectorProduct(const Vector3 &v) const
+        {
+            return Vector3(
+                y * v.z - z * v.y,
+                z * v.x - x * v.z,
+                x * v.y - y * v.x);
         }
 
         void invert()
