@@ -5,12 +5,6 @@ namespace cyclone
     class Particle
     {
     public:
-        Vector3 position;
-
-        Vector3 velocity;
-
-        Vector3 acceleration;
-
         /*
         the inverse of mass
         0 -> infinite mass, immovable
@@ -22,5 +16,15 @@ namespace cyclone
         damping is required to remove energy added through numerical instability in the integrator
         */
         real damping;
+
+        Vector3 position;
+
+        Vector3 velocity;
+
+        Vector3 acceleration;
+
+        Vector3 forceAccum;
+
+        void integrate(real duration);
     };
 }
